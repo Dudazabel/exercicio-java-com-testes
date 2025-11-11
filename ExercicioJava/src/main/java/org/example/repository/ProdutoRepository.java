@@ -10,7 +10,7 @@ public interface ProdutoRepository {
 
     List<Produto> findAll() throws SQLException;
 
-    Produto findById() throws SQLException;
+    Produto findById(int id) throws SQLException;
 
     Produto update(Produto produto) throws SQLException;
 

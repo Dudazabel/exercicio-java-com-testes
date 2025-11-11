@@ -21,8 +21,8 @@ public class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public List<Produto> listarProdutos() {
-        return null;
+    public List<Produto> listarProdutos()throws SQLException{
+        return repository.findAll();
     }
 
     @Override
@@ -31,12 +31,20 @@ public class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public Produto atualizarProduto(Produto produto, int id) {
-        return null;
+    public Produto atualizarProduto(Produto produto, int id) throws SQLException{
+        produto.setId(id);
+        return repository.update(produto);
     }
 
     @Override
-    public boolean excluirProduto(int id) {
-        return false;
+    public boolean excluirProduto(int id) throws SQLException {
+        Produto existe = repository.findById(id);
+
+        if(existe == null){
+            return false;
+        }
+
+        repository.deleteById(id);
+        return true;
     }
 }
